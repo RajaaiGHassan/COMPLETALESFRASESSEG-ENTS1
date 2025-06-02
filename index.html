@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COMPLETA LES FRASES SEGÜENTS:</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      font-family: "Fedra Sans", sans-serif;
+    }
+
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2vh;
+      box-sizing: border-box;
+      color: white;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .intro {
+      background-color: #C8215D;
+      color: white;
+    }
+
+    .intro h1 {
+      font-size: 4vh;
+      margin-bottom: 2vh;
+      line-height: 1.2;
+      /* or 1.3 */
+    }
+
+    .intro p {
+      font-size: 2.5vh;
+      margin-bottom: 4vh;
+      line-height: 1.4;
+    }
+
+
+    .btn {
+      background-color: #fff;
+      color: #C8215D;
+      padding: 2vh 4vh;
+      /* Bigger padding */
+      font-size: 2.5vh;
+      /* Bigger font */
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      /* More shadow for pop */
+    }
+
+    .btn:hover {
+      background-color: #C8215D;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .exercise {
+      background-color: #f8f9fa;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #bbb;
+      color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.2em;
+    }
+
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      color: #D81B60;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .question p {
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+    }
+
+    input[type="text"] {
+      width: 120px;
+      padding: 6px;
+      font-size: 14px;
+      text-align: center;
+      border: 2px solid #D81B60;
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #A3124A;
+    }
+
+    button.check-btn {
+      background-color: #D81B60;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button.check-btn:hover {
+      background-color: #ffffff;
+      color: #D81B60;
+      border: 2px solid #D81B60;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Intro Screen -->
+  <div id="introScreen" class="screen intro active">
+    <h1>COMPLETA LES FRASES SEGÜENTS</h1>
+    <p>Completa les frases següents sobre els moviments de la Terra.</p>
+    <button class="btn" onclick="startExercise()">Comença</button>
+  </div>
+
+  <!-- Exercise Screen -->
+  <div id="exerciseScreen" class="screen exercise">
+    <button class="btn back-btn" onclick="goBack()">← Torna enrere</button>
+
+    <form id="fillInForm">
+      <h2>COMPLETA LES FRASES SEGÜENTS</h2>
+
+      <div class="question">
+        <p>1. Els moviments de la Terra són el
+          <input type="text" id="q1a" placeholder="......................"> i el
+          <input type="text" id="q1b" placeholder="......................">.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>2. El moviment de
+          <input type="text" id="q2a" placeholder="......................"> fa que s’alternin el dia i la
+          <input type="text" id="q2b" placeholder="......................">.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>3. El moviment de
+          <input type="text" id="q3a" placeholder="......................"> fa que s’alternin les
+          <input type="text" id="q3b" placeholder="......................">.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>4. El solstici té lloc quan els raigs de sol cauen
+          <input type="text" id="q4a" placeholder="......................"> sobre un
+          <input type="text" id="q4b" placeholder="......................">.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>5. L’equinocci té lloc quan els raigs de sol cauen
+          <input type="text" id="q5a" placeholder="......................"> sobre
+          <input type="text" id="q5b" placeholder="......................">.
+        </p>
+      </div>
+
+      <button type="button" class="check-btn" onclick="checkAnswers()">Comprova</button>
+      <p id="result"></p>
+    </form>
+  </div>
+
+  <script>
+    function startExercise() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      }
+
+      document.getElementById("introScreen").classList.remove("active");
+      document.getElementById("exerciseScreen").classList.add("active");
+    }
+
+    function goBack() {
+      document.exitFullscreen?.();
+      document.getElementById("exerciseScreen").classList.remove("active");
+      document.getElementById("introScreen").classList.add("active");
+    }
+
+    function checkAnswers() {
+      const correctAnswers = {
+        q1a: ["rotació"],
+        q1b: ["translació"],
+        q2a: ["rotació"],
+        q2b: ["nit"],
+        q3a: ["translació"],
+        q3b: ["estacions"],
+        q4a: ["perpendicularment"],
+        q4b: ["hemisferi"],
+        q5a: ["perpendicularment"],
+        q5b: ["l’equador", "lequador"]
+      };
+
+      let score = 0;
+      const totalQuestions = Object.keys(correctAnswers).length;
+
+      for (let key in correctAnswers) {
+        const input = document.getElementById(key);
+        const userAnswer = input.value.trim().toLowerCase();
+
+        if (correctAnswers[key].includes(userAnswer)) {
+          score++;
+          input.style.borderColor = "green";
+          input.style.fontWeight = "bold";
+          input.style.color = "#D81B60";
+        } else {
+          input.style.borderColor = "#ff0000";
+          input.style.color = "#ff0000";
+        }
+      }
+
+      document.getElementById("result").textContent = `Has obtingut ${score} de ${totalQuestions} correctes!`;
+    }
+  </script>
+</body>
+
+</html>
